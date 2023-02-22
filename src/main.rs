@@ -1,7 +1,9 @@
 use actix_web::{get, post, App, HttpResponse, HttpServer, Responder};
+use std::process;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    println!("pid:{}", process::id());
     HttpServer::new(|| App::new().service(hello).service(echo))
         .bind(("127.0.0.1", 8080))?
         .run()
